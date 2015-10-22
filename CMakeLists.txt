@@ -11,7 +11,6 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   nav_msgs
   cv_bridge
-  opencv2
 )
 
 ## System dependencies are found with CMake's conventions
