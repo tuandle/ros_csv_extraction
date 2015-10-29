@@ -11,12 +11,13 @@ Feel free to augment and enjoy.
 # ROS Message Types
 Thus far, the data extraction tool is compatible with the following ROS message types:
 
-sensor_msgs/Image
-sensor_msgs/Imu
-sensor_msgs/LaserScan
-sensor_msgs/NavSatFix
-gps_common/gpsVel
-umrr_driver/radar_msg (this was a type used by the CRUISE vehicle (see http://www.shanelynn.ie/csv-data-extraction-tool-for-ros-bag-files/))
+* sensor_msgs/Image
+* sensor_msgs/Imu
+* sensor_msgs/LaserScan
+* sensor_msgs/NavSatFix
+* gps_common/gpsVel
+* umrr_driver/radar_msg (this was a type used by the CRUISE vehicle (see http://www.shanelynn.ie/csv-data-extraction-tool-for-ros-bag-files/))
+* nav_msgs/Odometry
 
 To install the data extraction tool, clone it to the `src` folder in your catkin_workspace, and `run catkin_make --pkg ros_csv_extraction`before using.
 
