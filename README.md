@@ -29,3 +29,12 @@ To install the data extraction tool, clone it to the `src` folder in your catkin
  * Extract a single topic:
 
 `rosrun data_extraction extract_topic.py -b <path_to_bag_file> -o <path_to_output_csv_file> -t <topic_name>`
+
+# Alternatives
+
+For text only topics you could also use the topic CSV parsing system built into ROS.
+
+`$ rostopic echo -b log_file.bag /topic_name -p > out.csv` 
+
+However, this would not work properly with bags that contain images.
+
