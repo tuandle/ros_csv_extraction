@@ -11,11 +11,10 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   nav_msgs
   cv_bridge
-  opencv2
 )
 
 ## System dependencies are found with CMake's conventions
-# find_package(Boost REQUIRED COMPONENTS system)
+find_package(OpenCV)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -119,6 +118,7 @@ catkin_package(
 # include_directories(include)
 include_directories(
   ${catkin_INCLUDE_DIRS}
+  ${OpenCV_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
