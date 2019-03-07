@@ -33,7 +33,7 @@ def usage():
     print ""
     print "  Rosbag Extraction Script v1 - Shane Lynn - 7th May 2012"
     print "                        v1.01 - *Modified by Lakshitha Dantanarayana - 31th July 2012 "
-    print "			       		   v1.02 - Gibson Hu - 2012"
+    print "                        v1.02 - Gibson Hu - 2012"
     print ""
     print " ---------------------------------------------------------------------------------------------"
 
@@ -65,9 +65,13 @@ def getHeader(msg):
                          "Orientation_x", "Orientation_y", "Orientation_z", "Orientation_w", \
                          "AngularVelocity_x", "AngularVelocity_y", "AngularVelocity_z", \
                          "LinearAcceleration_x", "LinearAcceleration_y", "LinearAcceleration_z"]
+
     elif (msgType == '_geometry_msgs__QuaternionStamped'):
         headerRow = ["Time", "Header_sequence", "Header_secs", "Header_nsecs", \
                 "Quaternion_x", "Quaternion_y", "Quaternion_z", "Quaternion_w"]
+
+    elif (msgType == '_sensor_msgs__TimeReference'):
+        headerRow = ["Time", "Header_sequence", "Header_secs", "Header_nsecs"]
 
     elif (msgType == '_sensor_msgs__NavSatFix'):
         headerRow = ["Time", "Header_sequence", "Header_secs", "Header_nsecs", \
@@ -133,9 +137,15 @@ def getColumns(t, msg, imageFile=""):
                              msg.orientation.x, msg.orientation.y, msg.orientation.z, msg.orientation.w, \
                              msg.angular_velocity.x, msg.angular_velocity.y, msg.angular_velocity.z, \
                              msg.linear_acceleration.x, msg.linear_acceleration.y, msg.linear_acceleration.z]
+
     elif (msgType == '_geometry_msgs__QuaternionStamped'):
         columns = [t, msg.header.seq, msg.header.stamp.secs, msg.header.stamp.nsecs, \
                                msg.quaternion.x, msg.quaternion.y, msg.quaternion.z, msg.quaternion.w]
+
+    elif (msgType == '_sensor_msgs__TimeReference'):
+        columns = [
+            t, msg.header.seq, msg.header.stamp.secs, msg.header.stamp.nsecs
+        ]
 
     elif (msgType == '_sensor_msgs__NavSatFix'):
         columns = [t, msg.header.seq, msg.header.stamp.secs, msg.header.stamp.nsecs, \
@@ -241,7 +251,7 @@ def main():
 
     #fileWriter.writerow(["Time", "Header sequence", "Header secs", "Header nsecs", \
     #"angle_min", "angle_max", "angle_increment","time_increment", "scan_time", "range_min", "range_max",\
-    #						 "ranges", "intensities" ])
+    #                        "ranges", "intensities" ])
     for topic, msg, t in bag.read_messages(topics=topicName):
         #on the first message, we need to set the header...
         if count == 1:
